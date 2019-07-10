@@ -8,7 +8,7 @@ def execute() {
     stage('Initialize') {
       checkout scm
       echo 'Loading pipeline definition'
-      #yaml parser = new yaml()
+      //yaml parser = new yaml()
       Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yaml').text)
     }
 
