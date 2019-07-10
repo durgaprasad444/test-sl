@@ -8,8 +8,9 @@ def execute() {
     stage('Initialize') {
       checkout scm
       echo 'Loading pipeline definition'
-      //yaml parser = new yaml()
-      Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yaml').text)
+      //Yaml parser = new Yaml()
+      //Map pipelineDefinition = parser.load(new File(pwd() + '/var/lib/jenkins/workspace/test-sl/pipeline.yaml').text)
+      Map pipelineCfg = readYaml(file: "${WORKSPACE}/pipeline.yaml")
     }
 
     switch(pipelineDefinition.pipelineType) {
