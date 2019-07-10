@@ -16,10 +16,10 @@ def execute() {
     switch(pipelineDefinition.pipelineType) {
       case 'maven':
         // Instantiate and execute a Python pipeline
-        new mavenPipeline(pipelineDefinition).executePipeline()
+         mavenPipeline(pipelineDefinition).executePipeline()
       case 'nodejs':
         // Instantiate and execute a NodeJS pipeline
-        new nodeJSPipeline(pipelineDefinition).executePipeline()
+         nodeJSPipeline(pipelineDefinition).executePipeline()
     }
 
   }
