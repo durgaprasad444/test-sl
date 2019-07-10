@@ -13,13 +13,13 @@ def execute() {
       Map pipelineCfg = readYaml(file: "${WORKSPACE}/pipeline.yaml")
     }
 
-    switch(pipelineDefinition.pipelineType) {
+    switch(pipelineCfg.pipelineType) {
       case 'maven':
         // Instantiate and execute a Python pipeline
-         mavenPipeline(pipelineDefinition).executePipeline()
+         new mavenPipeline(pipelineCfg).executePipeline()
       case 'nodejs':
         // Instantiate and execute a NodeJS pipeline
-         nodeJSPipeline(pipelineDefinition).executePipeline()
+         new nodeJSPipeline(pipelineCfg).executePipeline()
     }
 
   }
