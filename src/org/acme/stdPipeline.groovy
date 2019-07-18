@@ -8,18 +8,17 @@ def execute() {
     stage('Initialize') {
       checkout scm
       echo 'Loading pipeline definition'
-      //Yaml parser = new Yaml()
-      //Map pipelineDefinition = parser.load(new File(pwd() + '/var/lib/jenkins/workspace/test-sl/pipeline.yaml').text)
-      Map pipelineCfg = readYaml(file: "${WORKSPACE}/pipeline.yaml")
+      Yaml parser = new Yaml()
+      Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
     }
 
-    switch(pipelineCfg.pipelineType) {
-      case 'maven':
+    switch(pipelineDefinition.pipelineType) {
+      case 'python':
         // Instantiate and execute a Python pipeline
-          mavenPipeline(pipelineCfg).executePipeline()
+        new pythonPipeline(pipelineDefinition).executePipeline()
       case 'nodejs':
         // Instantiate and execute a NodeJS pipeline
-          nodeJSPipeline(pipelineCfg).executePipeline()
+        new nodeJSPipeline(pipelineDefinition).executePipeline()
     }
 
   }
